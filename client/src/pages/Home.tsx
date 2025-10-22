@@ -9,11 +9,11 @@ export default function Home() {
       {/* Header */}
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 -ml-4 md:ml-0">
             <img src="/images/logo-header.png" alt="IB Mentors" className="h-8" />
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</a>
+            <a href="#team" className="text-sm font-medium hover:text-primary transition-colors">Team</a>
             <a href="#framework" className="text-sm font-medium hover:text-primary transition-colors">Framework</a>
             <a href="#programmes" className="text-sm font-medium hover:text-primary transition-colors">Programmes</a>
             <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors">Testimonials</a>
@@ -84,8 +84,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20">
+      {/* Team Section */}
+      <section id="team" className="py-20">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
