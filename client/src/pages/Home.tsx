@@ -10,7 +10,7 @@ export default function Home() {
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src="/images/logo.svg" alt="IB Mentors" className="h-8" />
+            <img src="/images/logo-header.png" alt="IB Mentors" className="h-8" />
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</a>
@@ -433,7 +433,7 @@ export default function Home() {
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
-              <img src="/images/logo.svg" alt="IB Mentors" className="h-6" />
+              <img src="/images/logo-header.png" alt="IB Mentors" className="h-6" />
               <span className="text-sm text-muted-foreground">© 2024 IBMentors. All rights reserved.</span>
             </div>
             <div className="flex items-center gap-6">
