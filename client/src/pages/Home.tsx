@@ -15,51 +15,22 @@ export default function Home() {
       {/* Header */}
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="container flex h-16 items-center justify-between">
-          {/* Mobile menu button */}
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild className="lg:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-72">
-              <nav className="flex flex-col gap-6 mt-8">
-                <a href="#team" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Team</a>
-                <a href="#framework" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Framework</a>
-                <a href="#programmes" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Programmes</a>
-                <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Testimonials</a>
-                <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">FAQ</a>
-                <div className="flex gap-4 pt-4 border-t">
-                  <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                    <FaWhatsapp className="w-6 h-6" />
-                  </a>
-                  <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                    <Instagram className="w-6 h-6" />
-                  </a>
-                  <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors">
-                    <Mail className="w-6 h-6" />
-                  </a>
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
-
-          {/* Logo - centered on mobile, left on desktop */}
-          <div className="flex items-center justify-center flex-1 lg:justify-start">
-            <img src="/images/logo-header.png" alt="IB Mentors" className="h-8" />
+          {/* Logo - smaller on mobile */}
+          <div className="flex items-center">
+            <img src="/images/logo-header.png" alt="IB Mentors" className="h-6 sm:h-8" />
           </div>
 
-          {/* Desktop navigation - centered */}
-          <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
-            <a href="#team" className="text-sm font-medium hover:text-primary transition-colors">Team</a>
-            <a href="#framework" className="text-sm font-medium hover:text-primary transition-colors">Framework</a>
-            <a href="#programmes" className="text-sm font-medium hover:text-primary transition-colors">Programmes</a>
-            <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors">Testimonials</a>
-            <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors">FAQ</a>
+          {/* Mobile navigation - show tabs directly */}
+          <nav className="flex items-center gap-3 sm:gap-4 lg:gap-6">
+            <a href="#team" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Team</a>
+            <a href="#framework" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Framework</a>
+            <a href="#programmes" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Programmes</a>
+            <a href="#testimonials" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Testimonials</a>
+            <a href="#faq" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">FAQ</a>
           </nav>
 
           {/* Right side - social icons and CTA */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
               <FaWhatsapp className="w-5 h-5" />
             </a>
@@ -69,7 +40,7 @@ export default function Home() {
             <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors hidden sm:block">
               <Mail className="w-5 h-5" />
             </a>
-            <Button asChild className="ml-2 btn-enhanced rounded-full">
+            <Button asChild className="btn-enhanced rounded-full text-xs sm:text-sm px-3 sm:px-4">
               <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Message Now</a>
             </Button>
           </div>
