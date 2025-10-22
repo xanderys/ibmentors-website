@@ -1,91 +1,201 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, MessageCircle, Clock, Target, BookOpen, Users } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CheckCircle2, MessageCircle, Clock, Target, BookOpen, Users, Mail, Instagram, Menu } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { useState } from "react";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 -ml-4 md:ml-0">
+          {/* Mobile menu button */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild className="lg:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-72">
+              <nav className="flex flex-col gap-6 mt-8">
+                <a href="#team" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Team</a>
+                <a href="#framework" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Framework</a>
+                <a href="#programmes" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Programmes</a>
+                <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">Testimonials</a>
+                <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">FAQ</a>
+                <div className="flex gap-4 pt-4 border-t">
+                  <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    <FaWhatsapp className="w-6 h-6" />
+                  </a>
+                  <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                  <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors">
+                    <Mail className="w-6 h-6" />
+                  </a>
+                </div>
+              </nav>
+            </SheetContent>
+          </Sheet>
+
+          {/* Logo - centered on mobile, left on desktop */}
+          <div className="flex items-center justify-center flex-1 lg:justify-start">
             <img src="/images/logo-header.png" alt="IB Mentors" className="h-8" />
           </div>
-          <nav className="hidden md:flex items-center gap-6">
+
+          {/* Desktop navigation - centered */}
+          <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
             <a href="#team" className="text-sm font-medium hover:text-primary transition-colors">Team</a>
             <a href="#framework" className="text-sm font-medium hover:text-primary transition-colors">Framework</a>
             <a href="#programmes" className="text-sm font-medium hover:text-primary transition-colors">Programmes</a>
             <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors">Testimonials</a>
             <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors">FAQ</a>
           </nav>
-          <Button asChild>
-            <a href="#contact">Message Now</a>
-          </Button>
+
+          {/* Right side - social icons and CTA */}
+          <div className="flex items-center gap-3">
+            <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
+              <FaWhatsapp className="w-5 h-5" />
+            </a>
+            <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors hidden sm:block">
+              <Mail className="w-5 h-5" />
+            </a>
+            <Button asChild className="ml-2 btn-enhanced rounded-full">
+              <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Message Now</a>
+            </Button>
+          </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-background to-muted/20">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+      <section className="relative py-20 md:py-32 bg-white overflow-hidden">
+        {/* Decorative shapes - using actual SVG files */}
+        <img 
+          src="/images/23.svg" 
+          alt="" 
+          className="absolute top-10 left-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-70 pointer-events-none animate-float"
+        />
+        <img 
+          src="/images/15.svg" 
+          alt="" 
+          className="absolute bottom-20 left-0 w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 opacity-60 pointer-events-none animate-float-slow" 
+          style={{ animationDelay: '1s' }}
+        />
+        <img 
+          src="/images/69.svg" 
+          alt="" 
+          className="absolute top-16 right-0 w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 opacity-70 pointer-events-none animate-float" 
+          style={{ animationDelay: '2s' }}
+        />
+        <img 
+          src="/images/81.svg" 
+          alt="" 
+          className="absolute bottom-32 right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 opacity-60 pointer-events-none animate-float-slow" 
+          style={{ animationDelay: '0.5s' }}
+        />
+        <img 
+          src="/images/8.svg" 
+          alt="" 
+          className="hidden md:block absolute top-1/2 left-2 w-16 h-16 lg:w-20 lg:h-20 opacity-50 pointer-events-none animate-float" 
+          style={{ animationDelay: '1.5s' }}
+        />
+        
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight font-display">
               Master IB English with a{" "}
-              <span className="text-primary">45 Pointer</span> Tutor
+              <span className="bg-gradient-to-r from-purple-500 via-purple-400 to-amber-300 bg-clip-text text-transparent">
+                45 Pointer
+              </span>{" "}
+              Tutor
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground">
+            <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed">
               Unlock the secrets to how I scored{" "}
-              <span className="font-semibold text-accent">19/20 for Paper 1</span> and ranked{" "}
-              <span className="font-semibold text-accent">1st in my school</span> for IB English!
+              <span className="font-bold bg-yellow-200 px-2 py-1 rounded whitespace-nowrap">19/20 for Paper 1</span> and ranked{" "}
+              <span className="font-bold bg-yellow-200 px-2 py-1 rounded whitespace-nowrap">1st in my school</span> for{" "}
+              <span className="font-bold">IB English!</span>
             </p>
-            <Button size="lg" className="text-lg px-8" asChild>
+            <Button size="lg" className="text-lg px-8 mt-8 btn-enhanced rounded-full shadow-lg" asChild>
               <a href="#contact">Message Now</a>
             </Button>
           </div>
         </div>
       </section>
+      
+      {/* Wave Divider */}
+      <div className="relative w-full h-24 md:h-32 bg-white">
+        <svg className="absolute bottom-0 w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none" style={{ transform: 'translateY(1px)' }}>
+          <path d="M0,0 C300,80 600,80 900,40 C1050,20 1150,0 1200,0 L1200,120 L0,120 Z" fill="#000000"></path>
+        </svg>
+      </div>
 
       {/* Problem Statement */}
-      <section className="py-16 bg-black text-white">
-        <div className="container">
+      <section className="relative py-16 md:py-24 bg-black text-white overflow-hidden">
+        {/* Decorative swirls */}
+        <div className="absolute left-0 top-1/4 w-16 md:w-24 opacity-50 pointer-events-none">
+          <svg viewBox="0 0 100 100" className="text-white">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+        </div>
+        <div className="absolute right-0 bottom-1/4 w-16 md:w-24 opacity-50 pointer-events-none">
+          <svg viewBox="0 0 100 100" className="text-white">
+            <path d="M50,10 Q70,30 50,50 T50,90" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <path d="M40,10 Q60,30 40,50 T40,90" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <path d="M60,10 Q80,30 60,50 T60,90" fill="none" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+        </div>
+        
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto space-y-8">
             <h2 className="text-2xl md:text-3xl font-bold text-center">
-              Struggling with <span className="text-red-400 italic">confusing texts</span>,{" "}
-              <span className="text-red-400 italic">fuzzy expressions</span> and{" "}
-              <span className="text-red-400 italic">structuring essays</span>? You're not alone.
+              Struggling with <span className="italic" style={{ color: '#ef4444' }}>confusing texts</span>,{" "}
+              <span className="italic" style={{ color: '#ef4444' }}>fuzzy expressions</span> and{" "}
+              <span className="italic" style={{ color: '#ef4444' }}>structuring essays</span>? You're not alone.
             </h2>
             <p className="text-lg text-center text-gray-300">
               The paper requires nuanced skills in text analysis and critique—areas many students find challenging.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
-              <Card className="bg-gray-900 border-gray-800">
-                <CardContent className="pt-6">
-                  <p className="text-gray-300 italic">
-                    "My teacher says my <strong>analysis is not thorough</strong> enough or touch-and-go, but does not tell me how to improve"
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-gray-900 border-gray-800">
-                <CardContent className="pt-6">
-                  <p className="text-gray-300 italic">
-                    "I have <strong>no idea how to structure</strong> my essay"
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-gray-900 border-gray-800">
-                <CardContent className="pt-6">
-                  <p className="text-gray-300 italic">
-                    "I don't know how to <strong>evaluate literary language</strong> and keep <strong>retelling</strong> the text instead"
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <div className="p-6">
+                <p className="text-white italic text-base leading-relaxed">
+                  "My teacher says my <strong className="italic" style={{ color: '#ff5757' }}>analysis is not thorough</strong> enough or touch-and-go, but does not tell me how to improve"
+                </p>
+              </div>
+              <div className="p-6">
+                <p className="text-white italic text-base leading-relaxed">
+                  "I have <strong className="italic" style={{ color: '#ff5757' }}>no idea how to structure</strong> my essay"
+                </p>
+              </div>
+              <div className="p-6">
+                <p className="text-white italic text-base leading-relaxed">
+                  "I don't know how to <strong className="italic" style={{ color: '#ff5757' }}>evaluate literary language</strong> and keep <strong className="italic" style={{ color: '#ff5757' }}>retelling</strong> the text instead"
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Wave Divider - Black to White */}
+      <div className="relative w-full h-24 md:h-32 bg-black">
+        <svg className="absolute bottom-0 w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none" style={{ transform: 'translateY(1px)' }}>
+          <path d="M0,0 C300,80 600,80 900,40 C1050,20 1150,0 1200,0 L1200,120 L0,120 Z" fill="#ffffff"></path>
+        </svg>
+      </div>
+
       {/* Team Section */}
-      <section id="team" className="py-20">
+      <section id="team" className="py-20 md:py-28 bg-white">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -95,34 +205,42 @@ export default function Home() {
               </div>
               <div className="space-y-4 text-lg">
                 <p className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <span>I achieved a <strong>perfect score of 45/45</strong> in my IB exams among the top 0.8% of students to do so globally.</span>
+                  <span className="text-2xl flex-shrink-0">🌍</span>
+                  <span>I achieved a <span className="bg-purple-100 text-purple-700 px-1 rounded">perfect score of 45/45</span> in my IB exams among the <span className="bg-purple-100 text-purple-700 px-1 rounded">top 0.8%</span> of students to do so globally.</span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
-                  <span>Ranked as the <strong>Top Scorer for IB English</strong> in St. Joseph's Institution (<strong>Top #5 Global</strong> IB school) in Singapore.</span>
+                  <span className="text-2xl flex-shrink-0">🏅</span>
+                  <span>Ranked as the <span className="bg-yellow-100 text-yellow-800 px-1 rounded">Top Scorer</span> for IB English in St. Joseph's Institution (<strong>Top #5 Global</strong> IB school) in Singapore.</span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <span>Scored an almost perfect <strong>19/20</strong> on my English Paper 1, <strong>85%</strong> for Individual Oral in addition to a <strong>91% overall</strong> English score.</span>
+                  <span className="text-2xl flex-shrink-0">💯</span>
+                  <span>Scored an almost perfect <span className="bg-yellow-100 text-yellow-800 px-1 rounded">19/20</span> on my <span className="whitespace-nowrap">English Paper 1</span>, <span className="bg-yellow-100 text-yellow-800 px-1 rounded">85%</span> for Individual Oral in addition to a <span className="bg-yellow-100 text-yellow-800 px-1 rounded">91% overall</span> English score.</span>
                 </p>
                 <p className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                  <span className="text-2xl flex-shrink-0">🏆</span>
                   <span>Received offers from globally renowned institutions like <strong>LSE, Imperial College London, UCL, NUS</strong>.</span>
                 </p>
               </div>
-              <p className="text-muted-foreground">
-                Drawing from my wealth of experience mentoring students from <strong>Singapore's premier institutions</strong>—including SJI, ACSI, HCIS and more—each of my students have experienced exceptional improvements scoring mostly 7s in their English courses.
+              <p className="text-lg">
+                Drawing from my wealth of experience mentoring students from <span className="bg-yellow-200 px-1 rounded font-semibold whitespace-nowrap">Singapore's premier institutions</span>—including SJI, ACSI, HCIS and more—each of my students have experienced <span className="bg-purple-100 text-purple-700 px-1 rounded font-semibold">exceptional improvements scoring mostly 7s</span> in their English courses.
               </p>
-              <p className="text-muted-foreground">
-                <strong>Having tutored students of all abilities</strong>, Whether you're aiming to improve from a 4/5 grade or looking to polish your exam strategies to unlock the coveted 7, my tailored approach is designed to meet you where you are.
+              <p className="text-lg">
+                <span className="bg-yellow-200 px-1 rounded font-semibold">Having tutored students of all abilities</span>, whether you're aiming to improve from a 4/5 grade or looking to polish your exam strategies to unlock the coveted 7, my tailored approach is designed to meet you where you are.
               </p>
+              
+              {/* University Logos */}
+              <div className="flex items-center gap-4 md:gap-6 pt-6 flex-wrap justify-center md:justify-start">
+                <img src="/images/1200px-LSE_Logo.svg.png" alt="London School of Economics" className="h-10 md:h-12 object-contain" />
+                <img src="/images/Imperial_logo.png" alt="Imperial College London" className="h-10 md:h-12 object-contain" />
+                <img src="/images/ucl-logo.png.webp" alt="University College London" className="h-10 md:h-12 object-contain" />
+                <img src="/images/National_University_of_Singapore-Logo.wine.png" alt="National University of Singapore" className="h-10 md:h-12 object-contain" />
+              </div>
             </div>
             <div className="relative">
               <img 
                 src="/images/xander.webp" 
                 alt="Xander - IB Mentor" 
-                className="rounded-lg shadow-2xl w-full"
+                className="rounded-lg shadow-2xl w-full h-full max-h-[700px] object-cover object-center"
               />
             </div>
           </div>
@@ -130,93 +248,104 @@ export default function Home() {
       </section>
 
       {/* Framework Section */}
-      <section id="framework" className="py-20 bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10">
-        <div className="container">
+      <section id="framework" className="relative py-20 md:py-28 bg-[#7c6bea] text-white overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 text-4xl animate-sparkle">✨</div>
+        <div className="absolute top-20 right-1/4 text-2xl animate-sparkle" style={{ animationDelay: '1s' }}>⭐</div>
+        
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6 mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold">The 45-point Framework</h2>
-            <p className="text-xl text-muted-foreground">
-              Guaranteed to <strong>clear the fuzziness of English</strong> and boost you to an elite <span className="text-accent font-bold">7</span>!
+            <h2 className="text-3xl md:text-5xl font-bold text-white">The 45-point Framework</h2>
+            <p className="text-xl text-white/90">
+              Guaranteed to <strong className="text-white">clear the fuzziness of English</strong> and boost you to an <span className="text-green-400 font-bold underline decoration-green-400 decoration-2">elite 7</span>!
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card>
-              <CardHeader>
-                <Target className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>Stress-Free Success</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Achieve your dream grades without the unnecessary stress, confusion and mistakes
-                </CardDescription>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
+            <div className="text-center space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-white">Stress-Free Success</h3>
+              <p className="text-white/80">
+                Achieve your dream grades without the unnecessary stress, confusion and mistakes
+              </p>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <MessageCircle className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>Unlimited Practice & Feedback</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Benefit from unlimited exam-centric marking and personalised feedback on your work
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <div className="text-center space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                  <MessageCircle className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-white">Unlimited Practice & Feedback</h3>
+              <p className="text-white/80">
+                Benefit from unlimited exam-centric marking and personalised feedback on your work
+              </p>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <Users className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>45-pointer at your fingertips</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Gain invaluable IB mentorship with someone who actually took and succeeded in the IB to the fullest degree
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <div className="text-center space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-white">45-pointer at your fingertips</h3>
+              <p className="text-white/80">
+                Gain invaluable IB mentorship with someone who actually took and succeeded in the IB to the fullest degree
+              </p>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <Clock className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>24/7 Questions and Guidance</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Receive 24/7 support and instant access to expert guidance for all your IB English queries, ensuring you're never left in the dark.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <div className="text-center space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-white">24/7 Questions and Guidance</h3>
+              <p className="text-white/80">
+                Receive 24/7 support and instant access to expert guidance for all your IB English queries, ensuring you're never left in the dark.
+              </p>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <BookOpen className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>Exam-based Questionbanks</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Exercises to focus on the skills demanded by the IB English course. Master the exact style and difficulty of questions you will face.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <div className="text-center space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                  <BookOpen className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-white">Exam-based Questionbanks</h3>
+              <p className="text-white/80">
+                Exercises to focus on the skills demanded by the IB English course. Master the exact style and difficulty of questions you will face.
+              </p>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <Target className="w-12 h-12 text-primary mb-4" />
-                <CardTitle>Tailored Mentorship to your needs</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  We adapt to your unique learning style, strengths and areas for improvement. Offering you a personal roadmap to excel.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <div className="text-center space-y-4">
+              <div className="flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-white">Tailored Mentorship to your needs</h3>
+              <p className="text-white/80">
+                We adapt to your unique learning style, strengths and areas for improvement. Offering you a personal roadmap to excel.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Wave Divider - Purple to White */}
+      <div className="relative w-full h-24 md:h-32 bg-[#7c6bea]">
+        <svg className="absolute bottom-0 w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none" style={{ transform: 'translateY(1px)' }}>
+          <path d="M0,0 C300,80 600,80 900,40 C1050,20 1150,0 1200,0 L1200,120 L0,120 Z" fill="#ffffff"></path>
+        </svg>
+      </div>
+
       {/* Programmes Section */}
-      <section id="programmes" className="py-20">
+      <section id="programmes" className="py-20 md:py-28 bg-white">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-5xl font-bold">My Programmes</h2>
@@ -224,12 +353,14 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="border-primary/50 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-2xl">IB English Premium Classes</CardTitle>
-                <CardDescription className="text-base">
+            <Card className="shadow-lg card-hover overflow-hidden border-0 rounded-xl">
+              <div className="bg-gradient-to-r from-purple-600 to-purple-500 p-6 text-white rounded-t-xl">
+                <CardTitle className="text-2xl text-white">IB English Premium Classes</CardTitle>
+                <CardDescription className="text-white/90 mt-2">
                   Unlock the strategies—I personally used—to <strong>score 19/20</strong> in Paper 1 and <strong>rank 1st</strong> in my school for IB English.
                 </CardDescription>
+              </div>
+              <CardHeader className="pt-6">
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
@@ -261,7 +392,7 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-                <Button className="w-full" size="lg" asChild>
+                <Button className="w-full btn-enhanced rounded-full" size="lg" asChild>
                   <a href="#contact">Book Now*</a>
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
@@ -270,12 +401,14 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="border-accent/50 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-2xl">IAs, EE and TOK</CardTitle>
-                <CardDescription className="text-base">
+            <Card className="shadow-lg card-hover overflow-hidden border-0 rounded-xl">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-6 text-white rounded-t-xl">
+                <CardTitle className="text-2xl text-white">IAs, EE and TOK</CardTitle>
+                <CardDescription className="text-white/90 mt-2">
                   Additional coursework specific guidance, personalised for all your IB needs. Let me handle it.
                 </CardDescription>
+              </div>
+              <CardHeader className="pt-6">
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
@@ -303,7 +436,7 @@ export default function Home() {
                     </li>
                   </ul>
                 </div>
-                <Button className="w-full" size="lg" variant="outline" asChild>
+                <Button className="w-full btn-enhanced rounded-full" size="lg" variant="outline" asChild>
                   <a href="#contact">Inquire Now*</a>
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
@@ -313,29 +446,49 @@ export default function Home() {
             </Card>
           </div>
 
-          <div className="mt-12 text-center space-y-4">
-            <p className="text-lg">Learn more about my tutoring and how I can help you.</p>
-            <Button size="lg" asChild>
-              <a href="#contact">Book Now*</a>
-            </Button>
-            <p className="text-muted-foreground mt-8">
-              Have someone in mind? Receive <strong className="text-accent">100SGD</strong> for each first-time referral!
-            </p>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-12">
+            <Card className="shadow-lg card-hover">
+              <CardContent className="pt-6 text-center space-y-4">
+                <div className="flex justify-center">
+                  <MessageCircle className="w-12 h-12" />
+                </div>
+                <h3 className="text-2xl font-bold">Message or call now</h3>
+                <p className="text-muted-foreground">
+                  Learn more about my tutoring and how I can help you.
+                </p>
+                <Button size="lg" className="btn-enhanced rounded-full bg-black text-white hover:bg-black/90" asChild>
+                  <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Book Now*</a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-lg card-hover">
+              <CardContent className="pt-6 text-center space-y-4">
+                <div className="flex justify-center">
+                  <div className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-2xl font-bold">$</div>
+                </div>
+                <h3 className="text-2xl font-bold">Refer a friend & earn</h3>
+                <p className="text-muted-foreground">
+                  Have someone in mind? Receive <strong className="text-purple-600">100SGD</strong> for each first-time referral!
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-muted/30">
+      <section id="testimonials" className="py-20 md:py-28 bg-gray-50">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold">Testimonials</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#7c6bea]">Testimonials</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card>
+            <Card className="card-hover shadow-md relative">
               <CardContent className="pt-6">
-                <p className="text-muted-foreground italic mb-4">
+                <div className="text-[#7c6bea] text-5xl font-serif absolute top-4 left-4 leading-none">"</div>
+                <p className="text-muted-foreground italic mb-4 pt-8">
                   "English was always my weakest subject, especially with the pressure of IB exams looming. I feared I wouldn't make the grade until I started sessions with Xander. His tutoring transformed my approach to learning; Xander personalized each lesson to fit my learning style, making a world of difference."
                 </p>
                 <p className="font-semibold">- Arthur Goh (HCIS)</p>
@@ -343,20 +496,22 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="card-hover shadow-md relative">
               <CardContent className="pt-6">
-                <p className="text-muted-foreground italic mb-4">
-                  "Tutor Xander was an excellent tutor for my daughter. Xander's one-on-one attention and deep understanding of the IB curriculum helped invaluably in preparing her for the IB exams and mastering the answering techniques that were not taught in her school. She has certainly benefitted from his teaching!"
+                <div className="text-[#7c6bea] text-5xl font-serif absolute top-4 left-4 leading-none">"</div>
+                <p className="text-muted-foreground italic mb-4 pt-8">
+                  Tutor Xander was an excellent tutor for my daughter. Xander's one-on-one attention and deep understanding of the IB curriculum helped invaluably in preparing her for the IB exams and mastering the answering techniques that were not taught in her school. She has certainly benefitted from his teaching!"
                 </p>
                 <p className="font-semibold">- Mother of, Elina (UWC)</p>
                 <p className="text-sm text-muted-foreground">SL Literature: 7</p>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="card-hover shadow-md relative">
               <CardContent className="pt-6">
-                <p className="text-muted-foreground italic mb-4">
-                  "I felt especially anxious about English because it felt like I could never improve it no matter how hard I worked. Xander's tutoring changed that. His approach demystified the IB expectations and helped me apply my knowledge with precision. The strategies he shared were exactly what I needed to tackle my exams confidently."
+                <div className="text-[#7c6bea] text-5xl font-serif absolute top-4 left-4 leading-none">"</div>
+                <p className="text-muted-foreground italic mb-4 pt-8">
+                  I felt especially anxious about English because it felt like I could never improve it no matter how hard I worked. Xander's tutoring changed that. His approach demystified the IB expectations and helped me apply my knowledge with precision. The strategies he shared were exactly what I needed to tackle my exams confidently."
                 </p>
                 <p className="font-semibold">- Ian Wong (SJI)</p>
                 <p className="text-sm text-muted-foreground">SL Language & Literature: 6, P1: 16/20</p>
@@ -367,61 +522,56 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20">
+      <section id="faq" className="py-20 md:py-28 bg-gray-50">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-5xl font-bold">FAQs</h2>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-4">
-            <Card>
-              <CardHeader>
-                <CardTitle>Why would I need a tutor for English?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  IB English requires specific analytical and writing skills that aren't always taught in school. A tutor who has achieved top scores can provide personalized guidance, exam strategies, and feedback that helps you understand exactly what the IB is looking for.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              <AccordionItem value="item-1" className="bg-white border border-gray-200 rounded-lg px-6">
+                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline">
+                  Why would I need a tutor for English?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pt-2">
+                  English is something most students overlook or give up because they simply do not understand the demands of the subject. As your tutor and with my proven strong ability in English from my success in the IB, my goal is to teach you the perspective and skillsets to dominate in this subject.
+                </AccordionContent>
+              </AccordionItem>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Are there any free trials/refunds?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
+              <AccordionItem value="item-2" className="bg-white border border-gray-200 rounded-lg px-6">
+                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline">
+                  Are there any free trials/refunds?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pt-2">
                   I offer a free consultation session where we can evaluate your current level and discuss how I can help you improve. This allows you to experience my teaching approach before committing to the full programme.
-                </p>
-              </CardContent>
-            </Card>
+                </AccordionContent>
+              </AccordionItem>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Why Choose My Personalized Tutoring Over a Tuition Center?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Unlike tuition centers with large classes, I provide one-on-one attention tailored to your specific needs. As someone who achieved a perfect 45/45 score, I understand the IB system intimately and can offer strategies that worked at the highest level. You'll also get unlimited access to me for questions and feedback, not just during scheduled classes.
-                </p>
-              </CardContent>
-            </Card>
+              <AccordionItem value="item-3" className="bg-white border border-gray-200 rounded-lg px-6">
+                <AccordionTrigger className="text-left text-lg font-semibold hover:no-underline">
+                  Why Choose My Personalized Tutoring Over a Tuition Center?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pt-2">
+                  Opting for my tutoring services is like getting a bespoke suit instead of a retail one—I offer quality, personalised attention, adaptable lessons, and direct feedback to suit your learning style and goals, unlike the one-size-fits-all approach of large tuition centres.
+                  <br/><br/>
+                  Further, with my first-hand experience in excelling in the IBDP, I offer a fresh perspective and proven competency to teach my students to unlock their greatest potential in the IB.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-primary/20 to-accent/20">
+      <section id="contact" className="py-20 md:py-28 bg-[#7c6bea] text-white">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
             <h2 className="text-3xl md:text-5xl font-bold">Unlock Your IB English Success</h2>
-            <p className="text-xl text-muted-foreground">Register Today and Start Excelling!</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="text-lg px-8" asChild>
-                <a href="mailto:info@ibmentors.com">Email Me</a>
-              </Button>
-              <Button size="lg" className="text-lg px-8" variant="outline" asChild>
-                <a href="https://wa.me/your-number" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <p className="text-xl text-white/90">Register Today and Start Excelling!</p>
+            <div className="flex justify-center">
+              <Button size="lg" className="text-lg px-10 py-6 bg-black hover:bg-black/90 text-white rounded-full btn-enhanced" asChild>
+                <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Book a class now!</a>
               </Button>
             </div>
           </div>
@@ -440,7 +590,7 @@ export default function Home() {
               <a href="mailto:info@ibmentors.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 info@ibmentors.com
               </a>
-              <a href="https://instagram.com/ibmentors" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Instagram
               </a>
             </div>
