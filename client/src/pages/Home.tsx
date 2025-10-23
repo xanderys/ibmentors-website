@@ -33,23 +33,27 @@ export default function Home() {
             </nav>
           )}
 
-          {/* Right side - social icons and CTA - hidden on mobile */}
-          {!isMobile && (
-            <div className="flex items-center gap-2 sm:gap-3">
-              <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
-                <FaWhatsapp className="w-5 h-5" />
-              </a>
-              <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors hidden sm:block">
-                <Mail className="w-5 h-5" />
-              </a>
-              <Button asChild className="btn-enhanced rounded-full text-xs sm:text-sm px-3 sm:px-4">
-                <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Message Now</a>
-              </Button>
-            </div>
-          )}
+          {/* Right side - social icons and CTA */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Social icons - hidden on mobile */}
+            {!isMobile && (
+              <>
+                <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
+                  <FaWhatsapp className="w-5 h-5" />
+                </a>
+                <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors hidden sm:block">
+                  <Mail className="w-5 h-5" />
+                </a>
+              </>
+            )}
+            {/* Message Now button - always visible */}
+            <Button asChild className="btn-enhanced rounded-full text-xs sm:text-sm px-3 sm:px-4">
+              <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Message Now</a>
+            </Button>
+          </div>
         </div>
       </header>
 
