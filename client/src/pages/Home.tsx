@@ -6,9 +6,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CheckCircle2, MessageCircle, Clock, Target, BookOpen, Users, Mail, Instagram, Menu } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/useMobile";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -20,30 +22,34 @@ export default function Home() {
             <img src="/images/logo-header.png" alt="IB Mentors" className="h-6 sm:h-8" />
           </div>
 
-          {/* Mobile navigation - show tabs directly */}
-          <nav className="flex items-center gap-3 sm:gap-4 lg:gap-6">
-            <a href="#team" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Team</a>
-            <a href="#framework" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Framework</a>
-            <a href="#programmes" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Programmes</a>
-            <a href="#testimonials" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Testimonials</a>
-            <a href="#faq" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">FAQ</a>
-          </nav>
+          {/* Navigation - hidden on mobile */}
+          {!isMobile && (
+            <nav className="flex items-center gap-3 sm:gap-4 lg:gap-6">
+              <a href="#team" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Team</a>
+              <a href="#framework" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Framework</a>
+              <a href="#programmes" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Programmes</a>
+              <a href="#testimonials" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">Testimonials</a>
+              <a href="#faq" className="text-xs sm:text-sm font-medium hover:text-primary transition-colors">FAQ</a>
+            </nav>
+          )}
 
-          {/* Right side - social icons and CTA */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
-              <FaWhatsapp className="w-5 h-5" />
-            </a>
-            <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors hidden sm:block">
-              <Mail className="w-5 h-5" />
-            </a>
-            <Button asChild className="btn-enhanced rounded-full text-xs sm:text-sm px-3 sm:px-4">
-              <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Message Now</a>
-            </Button>
-          </div>
+          {/* Right side - social icons and CTA - hidden on mobile */}
+          {!isMobile && (
+            <div className="flex items-center gap-2 sm:gap-3">
+              <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
+                <FaWhatsapp className="w-5 h-5" />
+              </a>
+              <a href="https://instagram.com/ibmentorsofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors hidden sm:block">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="mailto:info@ibmentors.com" className="hover:text-primary transition-colors hidden sm:block">
+                <Mail className="w-5 h-5" />
+              </a>
+              <Button asChild className="btn-enhanced rounded-full text-xs sm:text-sm px-3 sm:px-4">
+                <a href="https://wa.me/message/WMVGQ3E3MQ2PA1" target="_blank" rel="noopener noreferrer">Message Now</a>
+              </Button>
+            </div>
+          )}
         </div>
       </header>
 
